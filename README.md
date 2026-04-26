@@ -3,8 +3,7 @@ title: FairHire AI
 emoji: ⚖️
 colorFrom: blue
 colorTo: indigo
-sdk: flask
-app_file: backend/app.py
+sdk: Dockerfile
 pinned: false
 ---
 
