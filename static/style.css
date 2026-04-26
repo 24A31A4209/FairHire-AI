@@ -1,0 +1,249 @@
+/* ═══════════════════════════════════════════════════════════════
+   FairHire AI — Ultimate Cyber-Audit Edition (v2.0)
+   Features: Glassmorphism, Neon Strokes, & Micro-Interactions
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&family=Syne:wght@700;800&display=swap');
+
+:root {
+    --bg-base: #020205;         /* Deep obsidian */
+    --bg-surface: rgba(10, 10, 18, 0.7); 
+    --accent: #00ffa3;          /* Electric Mint */
+    --accent-alt: #bcfe2f;      /* Cyber Lime */
+    --accent-glow: rgba(0, 255, 163, 0.3);
+    --border: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-dim: #64748b;
+}
+
+/* ── Global Reset & Background ── */
+body {
+    background: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    /* Animated Cyber Grid */
+    background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+    caret-color: var(--accent); /* Theme-consistent cursor */
+}
+
+/* ── Typography & Branding ── */
+.brand-font { font-family: 'Syne', sans-serif; }
+
+.brand-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -3px;
+    background: linear-gradient(to right, #fff, var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px var(--accent-glow));
+}
+
+/* ── Form Inputs (Visible Typing Logic) ── */
+input[type="text"], 
+textarea {
+    width: 100%;
+    background: rgba(13, 13, 22, 0.8) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    outline: none;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, 
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow), inset 0 0 10px var(--accent-glow);
+    background: rgba(13, 13, 22, 1) !important;
+}
+
+/* ── Dashboard & Candidate Cards ── */
+.dashboard-container, .candidate-card {
+    background: var(--bg-surface);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.candidate-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px) scale(1.005);
+    background: rgba(15, 15, 25, 0.9);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 0 0 20px var(--accent-glow);
+}
+
+/* Glowing Accent Line for Containers */
+.dashboard-container::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent-alt), transparent);
+}
+
+/* ── Skill Badges (Micro-UI Chips) ── */
+.skill-badge {
+    background: rgba(0, 255, 163, 0.05);
+    border: 1px solid rgba(0, 255, 163, 0.2);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.skill-badge:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: translateY(-1px);
+    border-color: var(--accent);
+}
+
+/* ── Drop Zone ── */
+.drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.drop-zone:hover {
+    border-color: var(--accent);
+    background: rgba(0, 255, 163, 0.05);
+    transform: translateY(-2px);
+}
+
+/* ── Futuristic Progress Steps ── */
+.loading-step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.loading-step::before {
+    content: "○";
+    color: var(--border);
+}
+
+.loading-step.active {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+}
+
+.loading-step.active::before {
+    content: "●";
+    animation: text-pulse 1s infinite;
+}
+
+@keyframes text-pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* ── Logic Trail "Live" Pulse ── */
+.logic-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    animation: beacon 1.5s infinite;
+}
+
+@keyframes beacon {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 163, 0.7); }
+    70% { transform: scale(1.4); box-shadow: 0 0 0 10px rgba(0, 255, 163, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 163, 0); }
+}
+
+/* ── Redaction Styles ── */
+.redacted {
+    display: inline-block;
+    background: #000;
+    color: var(--accent) !important;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 12px;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+    border-radius: 4px;
+    position: relative;
+}
+
+/* ── Primary Button ── */
+.btn-fair {
+    background: var(--accent);
+    color: #000;
+    font-weight: 800;
+    font-family: 'Syne', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 18px 36px;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+    box-shadow: 0 10px 20px -5px var(--accent-glow);
+}
+
+.btn-fair:hover:not(:disabled) {
+    background: var(--accent-alt);
+    box-shadow: 0 0 40px var(--accent-glow);
+    transform: scale(1.05);
+}
+
+.btn-fair:disabled {
+    background: #1e293b;
+    color: #475569;
+    clip-path: none;
+    border-radius: 8px;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 10px;
+    border: 2px solid var(--bg-base);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ── Chart & Visualization ── */
+#rankingChart {
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}

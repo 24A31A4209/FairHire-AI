@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FairHire AI | Unbiased Screening</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-black text-white min-h-screen">
+
+    <header class="p-6 border-b border-white/10">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-[#00ffa3] drop-shadow-[0_0_8px_rgba(0,255,163,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3v18M6 7l6-2 6 2M6 7c0 4 3 6 3 6s3-2 3-6M18 7c0 4-3 6-3 6s-3-2-3-6" />
+                </circle>
+                </svg>
+                <h1 class="text-xl font-black tracking-tighter uppercase">Fair<span class="text-[#00ffa3]">Hire</span> AI</h1>
+          
+    </header>
+
+    <main class="max-w-4xl mx-auto py-16 px-6">
+        <div class="mb-12 text-center">
+            <h2 class="text-4xl font-extrabold tracking-tight mb-4">Neural Merit Screening</h2>
+            <p class="text-slate-400">Anonymize identity markers and rank talent based on raw technical data.</p>
+        </div>
+
+        <form id="uploadForm" class="grid gap-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-[10px] font-black text-[#00ffa3] uppercase mb-2">Target Role</label>
+                        <input type="text" id="roleInput" name="role" placeholder="e.g. Senior Backend Engineer" required>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-black text-[#00ffa3] uppercase mb-2">Technical Audit Requirements</label>
+                        <textarea id="jobDescription" name="requirements" rows="6" placeholder="List frameworks, years of experience..."></textarea>
+                        <div class="flex gap-2 mt-3">
+                            <button type="button" class="example-btn text-[10px] bg-white/5 border border-white/10 hover:border-[#00ffa3] px-3 py-1 rounded transition-all" data-jd="ml">ML_ROLE</button>
+                            <button type="button" class="example-btn text-[10px] bg-white/5 border border-white/10 hover:border-[#00ffa3] px-3 py-1 rounded transition-all" data-jd="de">DATA_ENG</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <label class="block text-[10px] font-black text-[#00ffa3] uppercase mb-2">Candidate Dataset</label>
+                    <div id="dropZone" class="flex-grow border-2 border-dashed border-white/10 rounded-lg flex flex-col items-center justify-center p-8 hover:border-[#00ffa3]/50 hover:bg-[#00ffa3]/5 transition-all">
+                        <input type="file" name="resumes" id="resumeInput" multiple hidden>
+                        <svg class="w-10 h-10 text-slate-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                        <p class="text-xs text-slate-400">Drop PDF Resumes Here</p>
+                    </div>
+                    <div id="fileList" class="mt-4 space-y-2"></div>
+                </div>
+            </div>
+
+            <button type="submit" id="analyzeBtn" class="btn-fair w-full mt-4" >
+        INITIALIZE ANALYSIS
+             </button>
+        </form>
+    </main>
+
+    <div id="loadingState" class="hidden fixed inset-0 bg-black/95 backdrop-blur-md z-[100] flex flex-col items-center justify-center p-10">
+        <div class="w-64 space-y-4">
+            <h3 class="text-[#00ffa3] font-mono text-center mb-8 animate-pulse">EXECUTING NEURAL SCAN...</h3>
+            <div id="ls1" class="loading-step">ANONYMIZING IDENTITY</div>
+            <div id="ls2" class="loading-step">PARSING COMPETENCIES</div>
+            <div id="ls3" class="loading-step">NEUTRALIZING BIAS</div>
+            <div id="ls4" class="loading-step">VALIDATING FIT</div>
+            <div id="ls5" class="loading-step">GENERATING AUDIT</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

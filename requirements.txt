@@ -1,0 +1,30 @@
+# AI-Powered Fair Hiring System — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ── Web Framework ──────────────────────────────────────────
+flask==3.0.0
+flask-cors==4.0.0
+
+# ── File Parsing ───────────────────────────────────────────
+pdfplumber==0.10.3
+python-docx==1.1.0
+
+# ── AI / ML ────────────────────────────────────────────────
+sentence-transformers==2.7.0    # SBERT (all-MiniLM-L6-v2)
+torch==2.2.0                    # Required by sentence-transformers
+scikit-learn==1.4.0             # TF-IDF fallback + cosine similarity
+spacy==3.7.2                    # NLP (optional: for advanced parsing)
+
+# ── Data Science ───────────────────────────────────────────
+pandas==2.2.0
+numpy==1.26.3
+
+# ── Utilities ──────────────────────────────────────────────
+werkzeug==3.0.1                 # Flask file handling
+
+# ── Optional: spaCy model (run after pip install) ──────────
+# python -m spacy download en_core_web_sm
+Flask
+google-genai
+pdfplumber
+gunicorn
