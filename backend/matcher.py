@@ -5,7 +5,13 @@ import os
 
 # --- Configuration ---
 # Note: In a production environment, use os.environ.get("GOOGLE_API_KEY")
-genai.configure(api_key="GOOGLE_API_KEY")
+api_key = os.environ.get("GOOGLE_API_KEY") 
+
+if api_key:
+    genai.configure(api_key=api_key)
+else:
+    print("❌ Secret not found! Check the name in Settings.")
+    
 
 def rank_resume(resume_text, role, requirements):
     # 1. TRUNCATE INPUT
