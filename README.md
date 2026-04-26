@@ -3,7 +3,7 @@ title: FairHire AI
 emoji: ⚖️
 colorFrom: blue
 colorTo: indigo
-sdk: Dockerfile
+sdk: docker
 pinned: false
 ---
 
