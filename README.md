@@ -1,3 +1,13 @@
+---
+title: FairHire AI
+emoji: ⚖️
+colorFrom: blue
+colorTo: indigo
+sdk: flask
+app_file: backend/app.py
+pinned: false
+---
+
 # ⚖ FairHire AI — AI-Powered Fair Hiring System with Bias Detection
 
 > **Hack2Skills Solution Challenge 2026**
