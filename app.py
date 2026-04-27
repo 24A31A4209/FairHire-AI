@@ -23,12 +23,13 @@ def extract_text(filepath):
     text = ""
     try:
         if filepath.lower().endswith('.pdf'):
+            # Using 'with' correctly to ensure the file closes immediately
             with pdfplumber.open(filepath) as pdf:
                 for page in pdf.pages:
-                    # Added layout=True to preserve resume formatting better
                     page_text = page.extract_text(layout=True)
                     if page_text:
                         text += page_text + "\n"
+                    page.flush_cache() # Manually clear page cache to save RAM
         
         elif filepath.lower().endswith('.txt'):
             with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
@@ -36,16 +37,8 @@ def extract_text(filepath):
                 
     except Exception as e:
         print(f"❌ Extraction error on {filepath}: {e}")
+    
     return text.strip()
-
-def safe_int(value, default=0):
-    try:
-        if isinstance(value, int): return value
-        if isinstance(value, str):
-            value = ''.join(filter(str.isdigit, value))
-        return int(value) if value else default
-    except:
-        return default
 
 # ---------- ROUTE ----------
 
